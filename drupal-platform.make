@@ -1,4 +1,7 @@
-; lolmaus platform version 5
+; Basic Drush Make file
+; 
+; Usage:
+; drush make --prepare-install drupal7.make
 
 ; Core version
 ; ------------
@@ -6,144 +9,44 @@
 ; projects should be compatible with.
 
 core = 7.x
-
-
-; API version
-; ------------
-; Every makefile needs to declare its Drush Make API version. This version of
-; drush make uses API version `2`.
-
 api = 2
-
-
-; Core project
-; ------------
-; In order for your makefile to generate a full Drupal site, you must include
-; a core project. This is usually Drupal core, but you can also specify
-; alternative core projects like Pressflow. Note that makefildes included with
-; install profiles *should not* include a core project.
-  
-; Drupal 7.x. Requires the `core` property to be set to 7.x.
 projects[] = drupal
 
-; Modules
+; Projects
 ; --------
-projects[] = admin_menu
-projects[] = advanced_help
-projects[] = allow_all_file_extensions
-projects[] = auto_nodetitle
-projects[] = better_formats
-projects[] = block_access
-projects[] = block_class
-projects[] = borealis
-projects[] = bueditor
-projects[] = captcha
-projects[] = colorbox
-projects[] = conditional_styles
-projects[] = context
-projects[] = ctools
-projects[] = date
-projects[] = disable_messages
-projects[draggableviews][version] = 2.x-dev
-projects[] = email
-projects[] = empty_page
-projects[] = entityreference
-projects[] = entityreference_prepopulate
-projects[] = entity
-projects[] = features
-projects[] = field_collection
-projects[] = field_group
-projects[] = filefield_sources
-projects[flexslider][version] = 1.x-dev
-projects[] = fontyourface
-projects[] = fusion_accelerator
-projects[] = globalredirect
-projects[] = google_analytics
-projects[] = google_fonts
-projects[] = i18n
-projects[] = inline_entity_form
-projects[] = insert
-projects[] = invite
-projects[] = jquery_update
-projects[] = l10n_update
-projects[less][version] = 2.6
-projects[] = libraries
-projects[] = manual-crop
-projects[] = markdown
-projects[] = markdowneditor
-projects[] = menu_block
-projects[] = module_filter
-projects[] = multiupload_filefield_widget
-projects[] = multiupload_imagefield_widget
-projects[] = pathauto
-projects[] = publishcontent
-projects[] = recaptcha
-projects[] = rules
-projects[] = simplehtmldom
-projects[] = special_menu_items
-projects[] = submitted_by
-projects[] = taxonomy_access_fix
-projects[] = token
-projects[] = translation_overview
-projects[] = transliteration
-projects[] = variable
-projects[] = viewfield
-projects[] = views
-projects[] = views_bulk_operations
-projects[] = views_data_export
-projects[] = views_php
-projects[] = yamaps
-projects[] = youtube
+; Each project that you would like to include in the makefile should be
+; declared under the `projects` key. The simplest declaration of a project
+; looks like this:
 
-projects[neutral_paths][type] = "module"
-projects[neutral_paths][download][type] = "git"
-projects[neutral_paths][download][url] = "http://git.drupal.org/sandbox/akamaus/1420990.git"
+; Entities / Fields
+projects[entity][subdir] = "contrib"
+projects[date][subdir] = "contrib"
+projects[email][subdir] = "contrib"
+projects[link][subdir] = "contrib"
 
+; Views
+projects[views][subdir] = "contrib"
+projects[views_bulk_operations][subdir] = "contrib"
+projects[views_data_export][subdir] = "contrib"
 
-; Libraries
-; ---------
-libraries[colorbox][type] = "libraries"
-libraries[colorbox][download][type] = "file"
-libraries[colorbox][download][url] = "https://github.com/jackmoore/colorbox/archive/1.x.zip"
-; flexslider is downloaded via the module's makefile
-; libraries[flexslider][type] = "libraries"
-; libraries[flexslider][download][type] = "file"
-; libraries[flexslider][download][url] = "https://github.com/woothemes/FlexSlider/zipball/flexslider1"
-libraries[lessphp][type] = "libraries"
-libraries[lessphp][download][type] = "file"
-libraries[lessphp][download][url] = "http://leafo.net/lessphp/src/lessphp-0.3.9.tar.gz"
+; Rules
+project[rules][subdir] = "rules"
 
+; Admin
+projects[admin_menu][subdir] = "contrib"
+projects[advanced_help][subdir] = "contrib"
+projects[ctools][subdir] = "contrib"
 
-; Themes
-; --------
-projects[] = boron
-projects[amt_boron][type] = "theme"
-projects[amt_boron][download][type] = "git"
-projects[amt_boron][download][url] = "git@bitbucket.org:lolmaus/amt_boron.git"
-projects[amt_boron][download][branch] = "signs-clearance"
+; Development
+projects[devel][subdir] = "contrib"
+projects[features][subdir] = "contrib"
+projects[strongarm][subdir] = "contrib"
+projects[masquerade][subdir] = "contrib"
 
-projects[abrk][type] = "theme"
-projects[abrk][download][type] = "git"
-projects[abrk][download][url] = "git@bitbucket.org:lolmaus/abrk.git"
-
-projects[poly_boron][type] = "theme"
-projects[poly_boron][download][type] = "git"
-projects[poly_boron][download][url] = "git@bitbucket.org:lolmaus/poly_boron.git"
-
-projects[airisto][type] = "theme"
-projects[airisto][download][type] = "git"
-projects[airisto][download][url] = "git@bitbucket.org:lolmaus/airisto.git"
-
-projects[amtenergo][type] = "theme"
-projects[amtenergo][download][type] = "git"
-projects[amtenergo][download][url] = "git@bitbucket.org:lolmaus/amtenergo.git"
-
-projects[aurora][version] = 2
-projects[ruscup_aurora][type] = "theme"
-projects[ruscup_aurora][download][type] = "git"
-projects[ruscup_aurora][download][url] = "git@bitbucket.org:lolmaus/ruscup_aurora.git"
-
-projects[] = fusion
-projects[kursovik_fusion][type] = "theme"
-projects[kursovik_fusion][download][type] = "git"
-projects[kursovik_fusion][download][url] = git@bitbucket.org:lolmaus/kursovik_fusion.git
+; Other
+projects[token][subdir] = "contrib"
+projects[pathauto][subdir] = "contrib"
+projects[libraries][subdir] = "contrib"
+projects[context][subdir] = "contrib"
+projects[r4032login][subdir] = "contrib"
+projects[migrate][subdir] = "contrib"
